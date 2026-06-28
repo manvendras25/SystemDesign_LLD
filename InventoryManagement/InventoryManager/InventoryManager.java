@@ -1,0 +1,35 @@
+package InventoryManager;
+
+import CommonEnum.ProductCategory;
+import ProductFactory.ProductFactory;
+import Utility.Warehouse;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class InventoryManager {
+    private static InventoryManager instance;
+    private List<Warehouse> warehouses;
+    private ProductFactory productFactory;
+
+    private InventoryManager(){
+        warehouses = new ArrayList<>();
+        productFactory = new ProductFactory();
+    }
+
+    public static synchronized  InventoryManager getInstance(){
+        if(instance==null)
+        {
+            return new InventoryManager();
+        }
+        return instance;
+    }
+
+    public void addWarehouse(Warehouse  warehouse){
+        warehouses.add(warehouse);
+    }
+
+    public void removeWarehouse(Warehouse warehouse){
+        warehouses.remove(warehouse);
+    }
+}
